@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JERRY_LAB_V1.0</title>
+    <style>
+        /* [ CSS SECTION: THE HACKER AESTHETIC ] */
+        body { 
+            background-color: #0a0a0a; 
+            color: #33ff33; 
+            font-family: 'Courier New', Courier, monospace; 
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Scanline Effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 10;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        h1 { 
+            color: #ff3333; 
+            text-transform: uppercase; 
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #ff3333;
+        }
+
+        .box { 
+            border: 1px solid #33ff33; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+            background: rgba(0, 40, 0, 0.3);
+            box-shadow: 0 0 10px rgba(51, 255, 51, 0.2);
+        }
+
+        /* Spongy Styling */
+        #spongy-asset {
+            width: 250px;
+            /* Hacker Filter: Turns Spongy Green & Glowing */
+            filter: sepia(100%) hue-rotate(90deg) brightness(1.1) contrast(1.2);
+            border: 1px solid #33ff33;
+            margin: 10px 0;
+        }
+
+        button {
+            background: #990000;
+            color: white;
+            border: 1px solid #fff;
+            padding: 10px 20px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #ff0000;
+            box-shadow: 0 0 15px #ff0000;
+        }
+
+        .status { color: #888; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+
+    <h1>> JERRY_SYSTEM_OVERRIDE_V1</h1>
+    
+    <div class="box">
+        <h3>[ ASSET_LOAD: SPONGY.PNG ]</h3>
+        <!-- Spongy from BFDI -->
+        <img id="spongy-asset" src="https://nocookie.net" alt="Spongy">
+        <p class="status">STATUS: RENDERED_IN_USERLAND</p>
+    </div>
+
+    <div class="box">
+        <h3>[ SYSTEM_INTEL ]</h3>
+        <p id="ua">Detecting Horizon OS...</p>
+        <p id="controller">Controller: Disconnected</p>
+    </div>
+
+    <div class="box" style="border-color: #ff3333;">
+        <h3>[ DANGER_ZONE ]</h3>
+        <p>Attempt to trigger Buffer Overflow (RAM Bypass)</p>
+        <button onclick="executeCrash()">EXECUTE_CRASH</button>
+    </div>
+
+    <script>
+        /* [ JAVASCRIPT SECTION: THE LOGIC ] */
+
+        // Display User Agent
+        document.getElementById('ua').innerText = "UA: " + navigator.userAgent;
+
+        // Check for Gamepads (Joy-Cons)
+        window.addEventListener("gamepadconnected", () => {
+            document.getElementById('controller').innerText = "Controller: CONNECTED";
+            document.getElementById('controller').style.color = "#33ff33";
+        });
+
+        // The Crash Function
+        function executeCrash() {
+            alert("Jerry, initiate memory leak? This will freeze the Switch browser.");
+            let data = "SPONGY_STRENGTH";
+            // Infinite loop to force a "Software Error"
+            while(true) {
+                data += data; 
+                console.log("Leaking memory...");
+            }
+        }
+    </script>
+
+</body>
+</html>
